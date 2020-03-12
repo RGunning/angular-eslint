@@ -4,10 +4,7 @@ import {
   RuleTester,
 } from '../test-helper';
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-});
-
+const ruleTester = new RuleTester();
 const messageId: MessageIds = 'noLifecycleCall';
 
 ruleTester.run(RULE_NAME, rule, {

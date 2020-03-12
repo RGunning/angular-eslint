@@ -10,5 +10,6 @@ npm install $(npm pack ../../../builder | tail -1)
 npm install $(npm pack ../../../eslint-plugin | tail -1)
 npm install $(npm pack ../../../eslint-plugin-template | tail -1)
 npm install $(npm pack ../../../template-parser | tail -1)
+npm install $(npm pack ../../../parser | tail -1)
 
 npm install

@@ -8,13 +8,7 @@ import {
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    sourceType: 'module',
-  },
-});
-
+const ruleTester = new RuleTester();
 const messageId: MessageIds = 'noInputRename';
 
 ruleTester.run(RULE_NAME, rule, {

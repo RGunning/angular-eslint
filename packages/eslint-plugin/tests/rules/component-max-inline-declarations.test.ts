@@ -11,9 +11,7 @@ import {
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run(RULE_NAME, rule, {
   valid: [

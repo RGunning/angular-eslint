@@ -8,9 +8,7 @@ import { RuleTester } from '../test-helper';
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-});
+const ruleTester = new RuleTester();
 
 const interfaceMessageId: MessageIds = 'noConflictingLifecycleInterface';
 const methodMessageId = 'noConflictingLifecycleMethod';

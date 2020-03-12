@@ -1,0 +1,1 @@
+# @angular-eslint/parser

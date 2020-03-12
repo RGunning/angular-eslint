@@ -1,10 +1,9 @@
 import { TSESLint } from '@typescript-eslint/experimental-utils';
-import * as path from 'path';
 
-const parser = '@angular-eslint/template-parser';
+const parser = '@angular-eslint/parser';
 
 type RuleTesterConfig = Omit<TSESLint.RuleTesterConfig, 'parser'> & {
-  parser: typeof parser;
+  parser?: typeof parser;
 };
 
 /**
@@ -16,20 +15,16 @@ import {
 } from '@typescript-eslint/experimental-utils/dist/ts-eslint';
 
 export class RuleTester extends TSESLint.RuleTester {
-  private filename: string | undefined = undefined;
+  private filename: string | undefined = 'test.component.html';
 
   // as of eslint 6 you have to provide an absolute path to the parser
   // but that's not as clean to type, this saves us trying to manually enforce
   // that contributors require.resolve everything
-  constructor(options: RuleTesterConfig) {
+  constructor(options: RuleTesterConfig = {}) {
     super({
       ...options,
-      parser: require.resolve(options.parser),
+      parser: require.resolve(options.parser || '@angular-eslint/parser'),
     });
-
-    if (options.parserOptions && options.parserOptions.project) {
-      this.filename = path.join(getFixturesRootDir(), 'file.ts');
-    }
   }
 
   // as of eslint 6 you have to provide an absolute path to the parser
@@ -77,10 +72,6 @@ export class RuleTester extends TSESLint.RuleTester {
   }
 }
 
-function getFixturesRootDir() {
-  return path.join(process.cwd(), 'tests/fixtures/');
-}
-
 export function convertAnnotatedSourceToFailureCase<T extends string>({
   // @ts-ignore
   description: _,
@@ -90,6 +81,7 @@ export function convertAnnotatedSourceToFailureCase<T extends string>({
   data,
   options = [],
   annotatedOutput,
+  filename = 'test.component.html',
 }: {
   description: string;
   annotatedSource: string;
@@ -98,6 +90,7 @@ export function convertAnnotatedSourceToFailureCase<T extends string>({
   data?: Record<string, any>;
   options?: any;
   annotatedOutput?: string;
+  filename?: string;
 }): InvalidTestCase<T, typeof options> {
   if (!messageId && (!messages || !messages.length)) {
     throw new Error(
@@ -148,6 +141,7 @@ export function convertAnnotatedSourceToFailureCase<T extends string>({
 
   const invalidTestCase: InvalidTestCase<T, typeof options> = {
     code: parsedSource,
+    filename,
     options,
     errors,
   };

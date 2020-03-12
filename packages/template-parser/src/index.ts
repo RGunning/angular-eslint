@@ -299,7 +299,7 @@ function parseForESLint(code: string, options: { filePath: string }) {
   };
 }
 
-module.exports = {
+export default {
   parseForESLint,
   parse: function parse(code: string, options: { filePath: string }) {
     return parseForESLint(code, options).ast;

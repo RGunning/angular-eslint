@@ -8,28 +8,18 @@ import {
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@angular-eslint/template-parser',
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run(RULE_NAME, rule, {
   valid: [
     // it should succeed if async pipe is not negated
-    `
-      {{ (foo | async) }}
-    `,
+    `{{ (foo | async) }}`,
     // it should succeed if async pipe is not the last pipe in the negated chain
-    `
-      {{ !(foo | async | somethingElse) }}
-    `,
+    `{{ !(foo | async | somethingElse) }}`,
     // it should succeed if async pipe uses strict equality
-    `
-      {{ (foo | async) === false }}
-    `,
+    `{{ (foo | async) === false }}`,
     // it should succeed if any other pipe is negated
-    `
-      {{ !(foo | notAnAsyncPipe) }}
-    `,
+    `{{ !(foo | notAnAsyncPipe) }}`,
   ],
   invalid: [
     convertAnnotatedSourceToFailureCase({

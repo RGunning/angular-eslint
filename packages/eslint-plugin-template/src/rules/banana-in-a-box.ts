@@ -1,6 +1,6 @@
 import {
   createESLintRule,
-  getTemplateParserServices,
+  getParserServices,
 } from '../utils/create-eslint-rule';
 
 type Options = [];
@@ -28,7 +28,7 @@ export default createESLintRule<Options, MessageIds>({
   },
   defaultOptions: [],
   create(context) {
-    const parserServices = getTemplateParserServices(context);
+    const parserServices = getParserServices(context);
     const sourceCode = context.getSourceCode();
 
     return parserServices.defineTemplateBodyVisitor({

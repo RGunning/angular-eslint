@@ -11,10 +11,7 @@ import {
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-});
-
+const ruleTester = new RuleTester();
 const messageIdPrefixFailure: MessageIds = 'prefixFailure';
 const messageIdStyleFailure: MessageIds = 'styleFailure';
 const messageIdTypeFailure: MessageIds = 'typeFailure';

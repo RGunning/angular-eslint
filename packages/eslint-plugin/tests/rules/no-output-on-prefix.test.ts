@@ -11,10 +11,7 @@ import {
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-});
-
+const ruleTester = new RuleTester();
 const messageId: MessageIds = 'noOutputOnPrefix';
 
 ruleTester.run(RULE_NAME, rule, {
